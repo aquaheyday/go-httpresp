@@ -1,13 +1,13 @@
-# goresp
+# go-resp
 
-`goresp` is a lightweight Go package that simplifies JSON responses in HTTP APIs. It provides standardized response formats for success, errors, validation failures, pagination, and custom structures, enabling consistent and maintainable API development.
+`go-resp` is a lightweight Go package that simplifies JSON responses in HTTP APIs. It provides standardized response formats for success, errors, validation failures, pagination, and custom structures, enabling consistent and maintainable API development.
 
 ## 📦 Installation
 
-To install `goresp`, use the following command:
+To install `go-resp`, use the following command:
 
 ```bash
-go get github.com/aquaheyday/goresp
+go get github.com/aquaheyday/go-resp
 ```
 
 ## 🚀 Usage
@@ -17,12 +17,12 @@ package main
 
 import (
     "net/http"
-    "github.com/aquaheyday/goresp"
+    "github.com/aquaheyday/go-resp"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
     data := map[string]string{"message": "Hello, World!"}
-    goresp.Success(w, data)
+    resp.Success(w, data)
 }
 
 func main() {
@@ -36,13 +36,13 @@ func main() {
 - **Success**: Send a standard success response.
 
   ```go
-  goresp.Success(w, data)
+  resp.Success(w, data)
   ```
 
 - **Error**: Send a standard error response with a message.
 
   ```go
-  goresp.Error(w, "An error occurred")
+  resp.Error(w, "An error occurred")
   ```
 
 - **ValidationError**: Send a response indicating validation errors.
@@ -51,18 +51,18 @@ func main() {
   errors := map[string]string{
       "email": "Invalid email address",
   }
-  goresp.ValidationError(w, errors)
+  resp.ValidationError(w, errors)
   ```
 
 - **Paginated**: Send a paginated response with data and pagination info.
 
   ```go
-  pagination := goresp.Pagination{
+  pagination := resp.Pagination{
       Page:    1,
       PerPage: 10,
       Total:   100,
   }
-  goresp.Paginated(w, data, pagination)
+  resp.Paginated(w, data, pagination)
   ```
 
 - **Custom**: Send a response with a custom status code and payload.
@@ -71,19 +71,19 @@ func main() {
   payload := map[string]interface{}{
       "custom": "value",
   }
-  goresp.Custom(w, http.StatusTeapot, payload)
+  resp.Custom(w, http.StatusTeapot, payload)
   ```
 
 - **StatusSuccess / StatusError**: Send responses with `status`, `message`, and optional `data`.
 
   ```go
-  goresp.StatusSuccess(w, "Operation successful", data)
-  goresp.StatusError(w, "Operation failed")
+  resp.StatusSuccess(w, "Operation successful", data)
+  resp.StatusError(w, "Operation failed")
   ```
 
 ## 📘 Documentation
 
-For detailed documentation and examples, visit the [GoDoc](https://pkg.go.dev/github.com/aquaheyday/goresp) page.
+For detailed documentation and examples, visit the [GoDoc](https://pkg.go.dev/github.com/aquaheyday/go-resp) page.
 
 ## 🛡 License
 
